@@ -1,18 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
+from .forms import PostForm, CommentForm
 from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm
-from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
 from django.template.loader import get_template
+from django.utils import timezone
 
 
 # Create your views here.
 
+# Listar post ordenado por fecha publicación
 def post_list(request):
     posts = Post.objects.filter(
-        # published_date__lte=timezone.now()).order_by('published_date')
         publish__lte=timezone.now()).order_by('publish')
     # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_list.html', {'posts': posts})
@@ -31,7 +31,6 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            # post.published_date = timezone.now()
             post.publish = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
@@ -49,7 +48,6 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            # post.published_date = timezone.now()
             post.publis = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
@@ -66,6 +64,8 @@ def post_remove(request, pk):
     return redirect('post_list')
 
 
+# @permission_required
+@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -96,11 +96,15 @@ def comment_remove(request, pk):
 
 def login(request):
     # 👇 le pasa un request y una url.
-    return render(request, "appblog/login.html")
+    return render(request, "registration/login.html")
 
 def about_us(request):
     # 👇 le pasa un request y una url.
     return render(request, "appblog/about_us.html")
+
+# def index(request):
+#     return render(request, "index.html")
+#     pass
 
 
 # def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#m-@@+(ilc$g#p+1^2#hjsg1x*-9khj1va9u!0r64_4)5dh&vm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'appblog.apps.AppblogConfig',
     'appblog',
-    # instalado django-crispy-forms==1.13.0
-#    'crispy_forms',
+    'appuser',
+   'crispy_forms',    # django-crispy-forms==1.13.0
 ]
 
 MIDDLEWARE = [
@@ -126,12 +126,18 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-# STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
+#STATICFILES_DIRS being a list indicates that having multiple static directories is possible.
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
 
 # imágenes que se suben de forma dinámica (la sube el usr)
-#MEDIA_URL = '/media/'
-#MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+# https://devcenter.heroku.com/articles/django-assets
+# https://djangocentral.com/static-assets-in-django/
+# STATIC_ROOT is the single root directory from where the Django application will serve the static files in production.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
