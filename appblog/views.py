@@ -4,18 +4,23 @@ from .models import Post, Comment
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.template.loader import get_template
 
 
 # Create your views here.
+
 def post_list(request):
     posts = Post.objects.filter(
         # published_date__lte=timezone.now()).order_by('published_date')
         publish__lte=timezone.now()).order_by('publish')
+    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_detail.html', {'post': post})
 
 
@@ -32,6 +37,7 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
+    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_edit.html', {'form': form})
 
 
@@ -49,6 +55,7 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
+    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_edit.html', {'form': form})
 
 
@@ -70,6 +77,7 @@ def add_comment_to_post(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
+    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/add_comment_to_post.html', {'form': form})
 
 
@@ -85,3 +93,26 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+def login(request):
+    # 👇 le pasa un request y una url.
+    return render(request, "appblog/login.html")
+
+def about_us(request):
+    # 👇 le pasa un request y una url.
+    return render(request, "appblog/about_us.html")
+
+
+# def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
+    """
+    Decorator for views that checks that the user is logged in, redirecting
+    to the log-in page if necessary.
+    """
+
+# def permission_required(perm, login_url=None, raise_exception=False):
+    """
+    Decorator for views that checks whether a user has a particular permission
+    enabled, redirecting to the log-in page if necessary.
+    If the raise_exception parameter is given the PermissionDenied exception
+    is raised.
+    """
