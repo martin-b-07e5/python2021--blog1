@@ -16,7 +16,7 @@ class PublishedManager2(models.Manager):
 
 
 # acá definimos los usrs a ser mostrados
-class Post2(models.Model):
+class Userx(models.Model):
 
     STATUS_CHOICES = (
         ('draft', 'Draft'),

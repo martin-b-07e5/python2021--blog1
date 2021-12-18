@@ -1,17 +1,18 @@
 from django.contrib import admin
 # from .models import Post, Comment
-from .models import *
+# from .models import *
+from .models import Userx
 
 
 # Register your models here.
 
 # admin.site.register(Post)
-@admin.register(Post2)
+@admin.register(Userx)
 
 # 2021-12-14_23:56:32 👇 no esta funcionando la sgte linea
 # admin.site.register(Comment)
 
-class PostAdmin2(admin.ModelAdmin):
+class UserAdmin(admin.ModelAdmin):
     pass
     # list_display = ('title', 'slug', 'author', 'publish', 'status')
     list_display = ('fname', 'lname', 'slug', 'author', 'publish', 'status')
