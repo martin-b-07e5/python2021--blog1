@@ -30,14 +30,11 @@
                     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">
                         <i class="bi bi-plus-circle"> add comment</i></a>
                 </div>
-                <div class="float-start">
-                    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
-                        <i class="bi bi-pencil"> edit comment</i></a>
-                </div>
 
                 <!-- right align -->
                 <div class="float-end">
-                            Be careful. No confirmation
+                    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
+                        <i class="bi bi-pencil"> edit post</i></a>
                     <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">
                     <i class="bi bi-x-circle"> post_remove</i></a>
                 </div>
