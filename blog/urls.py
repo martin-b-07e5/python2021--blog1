@@ -21,12 +21,4 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appblog.urls')),    # Now all the request will directly be handled by the blog app.
-
-    path('usuario', include('appuser.urls')),    # aplicación url
-    # path('post/',include('apps.post.urls')),    # folder.aplicación.url
-    # path('usuario/', include('apps.usuario.urls'))    # folder.aplicación.url
 ]
-
-
-# if settings.DEBUG:
-#     urlpatterns += urlpatterns: list[URLResolver]

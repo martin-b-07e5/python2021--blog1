@@ -9,53 +9,54 @@ from django.urls import reverse
 
 # Create your models here.
 
-# add the custom manager
-# 👀👀 solo devuelve los publicados
+# 👀👀 Solo devuelve los publicados
+# Definirla arriba de la invocación.
 class PublishedManager(models.Manager):
+    # 💡 Add the custom manager.
     def get_queryset(self):
         return super(PublishedManager,
                      self).get_queryset()\
             .filter(status='published')
 
-
-# acá definimos las noticias a ser mostradas
+# ----------------------------------------------------------------------
 class Post(models.Model):
-
+    # 💡 Definimos las noticias a ser mostradas.
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
-
+    CATEGORIES_CHOICES = (
+        ('objetivos_del_milenio' ,'Objetivos del Milenio'),
+        ('onu' ,'ONU'),
+        ('organización_internacional' ,'Organización internacional'),
+        ('uncategorized', 'Sin categoría'),
+    )
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique_for_date='publish')
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     text = models.TextField()
-
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,
-        default='draft'
+        # default='draft'
+        default='published'
         )
-
-    # https://apuntes-snicoper.readthedocs.io/es/latest/programacion/python/django/generar_slug_automaticamente.html
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
-
-# --------------------------------------------------
+    category = models.CharField(
+        max_length=30,
+        choices=CATEGORIES_CHOICES,
+        default='uncategorized'
+        )
+    # ------------------------------
     objects = models.Manager()    # The default manager. 👀
     published = PublishedManager()    # Our custom manager. 👀👀
-
     # ✍👀 You have now defined your custom manager and added it to the Post model;
     # 💡👀 you can use it to perform queries.
-# --------------------------------------------------
-
-    # Acá se define el orden de las Posts
+    # ------------------------------
     class Meta:
+        # 💡 Definimos el orden de las Posts
         # ordering = ('-publish',)
         # ordering = ('created',)
         ordering = ('-created',)    # los mas nuevos primeros
@@ -64,8 +65,22 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-# https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types
+    def save(self, *args, **kwargs):
+        # 💡 generar_slug_automaticamente
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
 
+# https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types
+    # https://apuntes-snicoper.readthedocs.io/es/latest/programacion/python/django/generar_slug_automaticamente.html
+# ----------------------------------------------------------------------
+
+    def approve(self):
+        # if user.is_authenticated:
+            self.approved_comment = True
+            self.save()
+
+    def __str__(self):
+        return self.text
 
 
 # by NPA
@@ -76,13 +91,6 @@ class Comment(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 
-    def approve(self):
-        # if user.is_authenticated:
-            self.approved_comment = True
-            self.save()
-
-    def __str__(self):
-        return self.text
 
 
 """

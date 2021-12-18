@@ -4,11 +4,17 @@
 <div class="post">
 
     <!-- Título -->
+    <div class="clearfix">
+        <div class="float-start">
+            <h7>category: {{ post.category }}</h7>
+        </div>
+    </div>
     <h2>{{ post.title }}</h2>
 
-
     <!-- cuerpo -->
+    <hr>
     <p>{{ post.text|linebreaksbr }}</p>
+    <hr>
 
 
     <!-- Fecha publicación -->
@@ -64,11 +70,9 @@
             </div>
 
             <!-- 👇 muestra el autor del comentario-->
-            <!-- <hr> -->
             <strong>comment.author: {{ comment.author }}</strong>
             <!-- 👇 muestra los comentarios-->
             <p>{{ comment.text|linebreaks }}</p>
-            <!-- <hr> -->
         </div>
         {% endif %}
 
