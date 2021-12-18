@@ -12,10 +12,9 @@
 
 
     <!-- Fecha publicación -->
-    {% if post.publishx and user.is_authenticated %}
+    {% if post.publish and user.is_authenticated %}
     <div class="clearfix">
         <pre>
-
             <div class="float-start">created: {{ post.created }}</div>
             <div class="float-start">published: {{ post.publish }}</div>
             <div class="float-start">updated: {{ post.updated }}</div>
@@ -43,11 +42,6 @@
     </div>
     {% endif %}
 
-    <!-- testing my 1st custom manager -->
-    <!-- {% for comment in published %} -->
-    <!-- sgte linea, 👇 muestra los comentarios a todos -->
-    <!-- <p>{{ comment.text|linebreaks }}</p> -->
-    <!-- {% endfor %} -->
 
     <!-- comentarios -->
     {% for comment in post.comments.all %}

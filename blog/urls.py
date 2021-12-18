@@ -16,8 +16,6 @@
         2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-# from django.conf import settings    # agregado del tuto
-# from django.conf.urls.static import static    # agregado del tuto
 from django.urls import path, include
 
 urlpatterns = [

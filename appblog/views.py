@@ -17,11 +17,11 @@ from django.utils import timezone
 #         publish__lte=timezone.now()).order_by('publish')
 #     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+# listar solo los que estan Published and are not Draft
+# utilizo el custom manager "published" que definí en "models.py"
 def post_list(request):
     posts = Post.published.all()
-    # return render(request, 'blog/post/list.html', {'posts': posts})
     return render(request, 'appblog/post_list.html', {'posts': posts})
-
 
 
 def post_detail(request, pk):
@@ -37,6 +37,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.publish = timezone.now()
+            post.slug = "hola"
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:

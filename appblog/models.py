@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-# add the custom manager: 👀👀
-# solo devuelve los publicados
+# add the custom manager
+# 👀👀 solo devuelve los publicados
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager,
@@ -37,18 +37,20 @@ class Post(models.Model):
         default='draft'
         )
 
+# --------------------------------------------------
     objects = models.Manager()    # The default manager. 👀
     published = PublishedManager()    # Our custom manager. 👀👀
-    # ✍👀 You have now defined your custom manager and added it to the Post model; you can use it to perform queries.
 
-    # testing (método llamado desde post_detail.html)
-    def publishx(self):
-        print("hola")
-        self.publish = timezone.now()
-        self.save()
+    # ✍👀 You have now defined your custom manager and added it to the Post model;
+    # 💡👀 you can use it to perform queries.
+# --------------------------------------------------
 
+    # Acá se define el orden de las noticias
     class Meta:
-        ordering = ('-publish',)
+        # ordering = ('-publish',)
+        # ordering = ('created',)
+        ordering = ('-created',)    # los mas nuevos primeros
+        # ordering = ('title',)
 
     def __str__(self):
         return self.title
