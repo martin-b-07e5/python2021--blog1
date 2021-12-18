@@ -22,3 +22,21 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appblog.urls')),    # Now all the request will directly be handled by the blog app.
 ]
+
+
+""" The new URL pattern defined with include
+ refers to the URL patterns defined in the blog application
+  so that they are included under the blog/ path.
+
+(👇 no estoy utilizando namespace)
+You include these patterns under the namespace blog.
+Namespaces have to be unique across your entire project.
+Later, you will refer to your blog URLs easily by using the namespace followed by a colon and the URL name,
+ for example,
+  blog:post_list
+  and
+  blog:post_detail.
+
+You can learn more about URL namespaces at
+ https://docs.djangoproject.com/en/3.0/topics/http/urls/#url-namespaces.
+"""

@@ -14,13 +14,13 @@
         1. Import the include() function: from django.urls import include, path
         2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.urls import include, path, re_path
 from . import views
 from appblog.views import *
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path, re_path
 # from .views import Index, Index2
 
 urlpatterns = [
