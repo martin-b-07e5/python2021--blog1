@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'appblog.apps.AppblogConfig',
     'appblog',
+    # 'appuser.apps.AppuserConfig',
     'appuser',
    'crispy_forms',    # django-crispy-forms==1.13.0
 ]

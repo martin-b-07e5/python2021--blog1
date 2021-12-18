@@ -40,5 +40,4 @@ urlpatterns = [
     path('about_us/', about_us, name='about_us'),
     path('login/', login, name='login'),
 
-    # path('index/', index, name='index'),
 ]

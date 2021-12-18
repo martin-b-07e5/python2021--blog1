@@ -102,9 +102,6 @@ def about_us(request):
     # 👇 le pasa un request y una url.
     return render(request, "appblog/about_us.html")
 
-# def index(request):
-#     return render(request, "index.html")
-#     pass
 
 
 # def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
