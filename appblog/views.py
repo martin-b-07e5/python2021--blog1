@@ -1,12 +1,14 @@
 from .forms import PostForm, CommentForm
-from .models import Post, Comment
-# from appblog.models import Post
+# from .models import Post, Comment
+from .models import *
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import get_template
 from django.utils import timezone
+
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -17,8 +19,8 @@ from django.utils import timezone
 #         publish__lte=timezone.now()).order_by('publish')
 #     return render(request, 'appblog/post_list.html', {'posts': posts})
 
-# listar solo los que estan Published and are not Draft
-# utilizo el custom manager "published" que definí en "models.py"
+# 👀 listar solo los que estan Published and are not Draft
+# 💡 Utilizo el custom manager "published" que definí en "models.py"
 def post_list(request):
     posts = Post.published.all()
     return render(request, 'appblog/post_list.html', {'posts': posts})
@@ -97,16 +99,6 @@ def comment_remove(request, pk):
     return redirect('post_detail', pk=comment.post.pk)
 
 
-def login(request):
-    # 👇 le pasa a render un request y una url.
-    return render(request, "registration/login.html")
-
-
-def about_us(request):
-    # 👇 le pasa a render un request y una url.
-    return render(request, "appblog/about_us.html")
-
-
 # def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):
     """
     Decorator for views that checks that the user is logged in, redirecting
@@ -120,3 +112,52 @@ def about_us(request):
     If the raise_exception parameter is given the PermissionDenied exception
     is raised.
     """
+
+
+def login(request):
+    # 👇 esta vez le pasa a render solo un request y una url.
+    return render(request, "registration/login.html")
+
+
+def about_us(request):
+    # 👇 esta vez le pasa a render solo un request y una url.
+    return render(request, "appblog/about_us.html")
+
+
+
+def filter_by_date(request):
+    posts = Post.objects.all().order_by('created')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+
+def filter_by_date_reverse(request):
+    posts = Post.objects.all().order_by('-created')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+
+def filter_by_category(request):
+    posts = Post.objects.all().order_by('category')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+
+def filter_by_category_reverse(request):
+    posts = Post.objects.all().order_by('-category')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
+def filter_by_number_of_comments(request):
+    # posts= Post.objects.filter(post.comments.count)
+    posts= Post.objects.filter(publish__year=2021)
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
+#  all_posts = Post.objects.all()
+
+# Post.objects.filter(publish__year=2020)
+
+# Post.objects.filter(publish__year=2020, author__username='admin')
+# Post.objects.filter(publish__year=2020) \
+#             .filter(author__username='admin')
+
+# Post.objects.order_by('title')
+# Post.objects.order_by('-title')
+
+
+ 

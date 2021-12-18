@@ -19,9 +19,15 @@
             <!-- Dropdown button -->
             <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-toggle="dropdown">🎅 Filter by: </button>
             <div class="dropdown-menu">
-                <a href="{% url 'post_list' %}" class="dropdown-item">Date</a>
-                <a href="{% url 'about_us' %}" class="dropdown-item">Category</a>
-                <a href="{% url 'login' %}" class="dropdown-item">qy Comentaries</a>
+                <a href="{% url 'filter_by_date' %}" class="dropdown-item">Date</a>
+                <a href="{% url 'filter_by_date_reverse' %}" class="dropdown-item">Date(reverse)</a>
+                <hr>
+                <a href="{% url 'filter_by_category' %}" class="dropdown-item">Category</a>
+                <a href="{% url 'filter_by_category_reverse' %}" class="dropdown-item">Category(reverse)</a>
+                <hr>
+                <a href="{% url 'filter_by_number_of_comments' %}" class="dropdown-item">qy Comments</a>
+                <hr>
+                <a href="{% url 'login' %}" class="dropdown-item">exit</a>
             </div>
         </li>
     </ul>

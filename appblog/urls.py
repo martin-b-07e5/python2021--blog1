@@ -40,4 +40,11 @@ urlpatterns = [
     path('about_us/', about_us, name='about_us'),
     path('login/', login, name='login'),
 
+    path('filter_by_date/', filter_by_date, name='filter_by_date'),
+    path('filter_by_date_reverse/', filter_by_date_reverse, name='filter_by_date_reverse'),
+    
+    path('filter_by_category/', filter_by_category, name='filter_by_category'),
+    path('filter_by_category_reverse/', filter_by_category_reverse, name='filter_by_category_reverse'),
+
+    path('filter_by_number_of_comments/', filter_by_number_of_comments, name='filter_by_number_of_comments'),
 ]
