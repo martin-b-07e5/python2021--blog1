@@ -1,78 +1,88 @@
 {% extends './../base.html' %}
 
 {% block content %}
-    <div class="post">
+<div class="post">
 
-        <!-- Título -->
-        <h2>{{ post.title }}</h2>
-
-
-        <!-- cuerpo -->
-        <p>{{ post.text|linebreaksbr }}</p>
+    <!-- Título -->
+    <h2>{{ post.title }}</h2>
 
 
-        <!-- Fecha publicación -->
-        {% if post.publish and user.is_authenticated %}
-            <div class="clearfix">
-                <pre>
-                    <div class="float-start">created: {{ post.created }}</div>
-                    <div class="float-start">published: {{ post.publish }}</div>
-                    <div class="float-start">updated: {{ post.updated }}</div>
-                </pre>
+    <!-- cuerpo -->
+    <p>{{ post.text|linebreaksbr }}</p>
+
+
+    <!-- Fecha publicación -->
+    {% if post.publishx and user.is_authenticated %}
+    <div class="clearfix">
+        <pre>
+
+            <div class="float-start">created: {{ post.created }}</div>
+            <div class="float-start">published: {{ post.publish }}</div>
+            <div class="float-start">updated: {{ post.updated }}</div>
+        </pre>
+    </div>
+    {% endif %}
+
+
+    <!-- botones borrado -->
+    {% if user.is_authenticated %}
+    <div class="clearfix">
+        <!-- left align -->
+        <div class="float-start">
+            <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">
+                <i class="bi bi-plus-circle"> add comment</i></a>
+        </div>
+
+        <!-- right align -->
+        <div class="float-end">
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
+                <i class="bi bi-pencil"> edit post</i></a>
+            <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">
+                <i class="bi bi-x-circle"> post_remove</i></a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- testing my 1st custom manager -->
+    <!-- {% for comment in published %} -->
+    <!-- sgte linea, 👇 muestra los comentarios a todos -->
+    <!-- <p>{{ comment.text|linebreaks }}</p> -->
+    <!-- {% endfor %} -->
+
+    <!-- comentarios -->
+    {% for comment in post.comments.all %}
+    <div class="clearfix">
+
+        <!-- sgte linea, 👇 muestra los comentarios a todos -->
+        <p>{{ comment.text|linebreaks }}</p>
+
+        <!-- permite editar comentarios a authenticated users -->
+        {% if user.is_authenticated or comment.approved_comment %}
+        <div class="comment">
+            <div class="date">
+                {{ comment.created_date }}
+                {% if not comment.approved_comment %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+                    <i class="bi bi-x-circle"> comment_remove</i></a>
+                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+                    👍 comment_approve</a>
+                {% endif %}
             </div>
-        {% endif %}
 
-        <!-- botones borrado -->
-        {% if user.is_authenticated %}
-            <div class="clearfix">
-                <!-- left align -->
-                <div class="float-start">
-                    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">
-                        <i class="bi bi-plus-circle"> add comment</i></a>
-                </div>
-
-                <!-- right align -->
-                <div class="float-end">
-                    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
-                        <i class="bi bi-pencil"> edit post</i></a>
-                    <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">
-                    <i class="bi bi-x-circle"> post_remove</i></a>
-                </div>
-            </div>
-
-        {% endif %}
-
-
-        <!-- comentarios -->
-        {% for comment in post.comments.all %}
-
-            <!-- sgte linea, muestra los comentarios a todos -->
+            <!-- 👇 muestra el autor del comentario-->
+            <!-- <hr> -->
+            <strong>comment.author: {{ comment.author }}</strong>
+            <!-- 👇 muestra los comentarios-->
             <p>{{ comment.text|linebreaks }}</p>
+            <!-- <hr> -->
+        </div>
+        {% endif %}
 
-            <!-- permite editar comentarios a authenticated users -->
-            {% if user.is_authenticated or comment.approved_comment %}
-                <div class="comment">
-                    <div class="date">
-                        {{ comment.created_date }}
-                        {% if not comment.approved_comment %}
-                            <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
-                                <i class="bi bi-x-circle"> comment_remove</i></a>
-                            <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
-                            👍 comment_approve</a> 
-                        {% endif %}
-                    </div>
-                    
-                    <strong>{{ comment.author }}</strong>
-
-                    <!-- muestra los comentarios a todos -->
-                    <p>{{ comment.text|linebreaks }}</p>
-                </div>
-            {% endif %}
-
-            {% empty %}
-                <p>Todavia no hay comentarios, se el primero!</p>
-        {% endfor %}
-
+        {% empty %}
+        <p>Todavia no hay comentarios, se el primero!</p>
 
     </div>
+    {% endfor %}
+
+</div>
 {% endblock %}

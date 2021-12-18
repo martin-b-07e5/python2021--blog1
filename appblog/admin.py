@@ -33,16 +33,15 @@ class PostAdmin(admin.ModelAdmin):
     ordering = ('publish', 'status')    # Order by status, then by publish.
 
 
-
 """You are telling the Django administration site
      that your model is registered in the site
       using a custom class
        that inherits from ModelAdmin.
-    
+
     In this class, you can include information about
      how to display the model in the site and
       how to interact with it.
-    
+
     The list_display attribute
      allows you to set the fields of your model
       that you want to display on the administration object list page.
@@ -53,7 +52,6 @@ class PostAdmin(admin.ModelAdmin):
        admin.site.register() function
         that you replaced,
       registering the ModelAdmin class that it decorates.
-
 
     As you type the title of a new post, the slug field is filled in automatically.
     You have told Django to prepopulate the slug field with the input of the title field using the prepopulated_fields attribute.

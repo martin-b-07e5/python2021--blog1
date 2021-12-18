@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'appblog',
     # 'appuser.apps.AppuserConfig',
     'appuser',
+    # 'register.apps.AppuserConfig',
+    'register',
    'crispy_forms',    # django-crispy-forms==1.13.0
 ]
 
@@ -144,3 +146,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# techwithtim.net/tutorials/django/user-registration/
+CRISPY_TEMPLATE_PACK="bootstrap4"
+

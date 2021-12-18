@@ -1,5 +1,6 @@
 from .forms import PostForm, CommentForm
 from .models import Post, Comment
+# from appblog.models import Post
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -7,20 +8,24 @@ from django.shortcuts import render, get_object_or_404
 from django.template.loader import get_template
 from django.utils import timezone
 
-
 # Create your views here.
 
+
 # Listar post ordenado por fecha publicación
+# def post_list(request):
+#     posts = Post.objects.filter(
+#         publish__lte=timezone.now()).order_by('publish')
+#     return render(request, 'appblog/post_list.html', {'posts': posts})
+
 def post_list(request):
-    posts = Post.objects.filter(
-        publish__lte=timezone.now()).order_by('publish')
-    # 👇 le pasa un request, una url y un diccionario.
+    posts = Post.published.all()
+    # return render(request, 'blog/post/list.html', {'posts': posts})
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
 
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_detail.html', {'post': post})
 
 
@@ -36,7 +41,6 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_edit.html', {'form': form})
 
 
@@ -53,7 +57,6 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/post_edit.html', {'form': form})
 
 
@@ -77,7 +80,6 @@ def add_comment_to_post(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = CommentForm()
-    # 👇 le pasa un request, una url y un diccionario.
     return render(request, 'appblog/add_comment_to_post.html', {'form': form})
 
 
@@ -94,14 +96,15 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
 
+
 def login(request):
-    # 👇 le pasa un request y una url.
+    # 👇 le pasa a render un request y una url.
     return render(request, "registration/login.html")
 
-def about_us(request):
-    # 👇 le pasa un request y una url.
-    return render(request, "appblog/about_us.html")
 
+def about_us(request):
+    # 👇 le pasa a render un request y una url.
+    return render(request, "appblog/about_us.html")
 
 
 # def login_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=None):

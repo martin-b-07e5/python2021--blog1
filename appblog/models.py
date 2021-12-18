@@ -41,6 +41,12 @@ class Post(models.Model):
     published = PublishedManager()    # Our custom manager. 👀👀
     # ✍👀 You have now defined your custom manager and added it to the Post model; you can use it to perform queries.
 
+    # testing (método llamado desde post_detail.html)
+    def publishx(self):
+        print("hola")
+        self.publish = timezone.now()
+        self.save()
+
     class Meta:
         ordering = ('-publish',)
 
