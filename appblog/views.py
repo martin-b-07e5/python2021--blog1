@@ -141,16 +141,24 @@ def filter_by_category_reverse(request):
     posts = Post.objects.all().order_by('-category')
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+def filter_by_title(request):
+    posts = Post.objects.all().order_by('title')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
 
+def filter_by_title_reverse(request):
+    posts = Post.objects.all().order_by('-title')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
+
+# 🔥 pending
 def filter_by_number_of_comments(request):
     # posts= Post.objects.filter(post.comments.count)
     posts= Post.objects.filter(publish__year=2021)
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
 
-#  all_posts = Post.objects.all()
 
-# Post.objects.filter(publish__year=2020)
 
 # Post.objects.filter(publish__year=2020, author__username='admin')
 # Post.objects.filter(publish__year=2020) \

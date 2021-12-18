@@ -46,5 +46,10 @@ urlpatterns = [
     path('filter_by_category/', filter_by_category, name='filter_by_category'),
     path('filter_by_category_reverse/', filter_by_category_reverse, name='filter_by_category_reverse'),
 
+    path('filter_by_title/', filter_by_title, name='filter_by_title'),
+    path('filter_by_title_reverse/', filter_by_title_reverse, name='filter_by_title_reverse'),
+
+
+    # 🔥 pending
     path('filter_by_number_of_comments/', filter_by_number_of_comments, name='filter_by_number_of_comments'),
 ]
