@@ -19,15 +19,23 @@
             <!-- Dropdown button -->
             <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-toggle="dropdown">🎅 Filter by: </button>
             <div class="dropdown-menu">
-                <a href="{% url 'filter_by_date' %}" class="dropdown-item">Date</a>
-                <a href="{% url 'filter_by_date_reverse' %}" class="dropdown-item">Date(reverse)</a>
-                <hr>
                 <a href="{% url 'filter_by_category' %}" class="dropdown-item">Category</a>
                 <a href="{% url 'filter_by_category_reverse' %}" class="dropdown-item">Category(reverse)</a>
                 <hr>
                 <a href="{% url 'filter_by_title' %}" class="dropdown-item">Title</a>
                 <a href="{% url 'filter_by_title_reverse' %}" class="dropdown-item">Title(reverse)</a>
                 <hr>
+                <a href="{% url 'filter_by_created' %}" class="dropdown-item">Created</a>
+                <a href="{% url 'filter_by_created_reverse' %}" class="dropdown-item">Created(reverse)</a>
+                <hr>
+                <a href="{% url 'filter_by_publish' %}" class="dropdown-item">Published</a>
+                <a href="{% url 'filter_by_publish_reverse' %}" class="dropdown-item">Published(reverse)</a>
+                <hr>
+                <a href="{% url 'filter_by_updated' %}" class="dropdown-item">Updated</a>
+                <a href="{% url 'filter_by_updated_reverse' %}" class="dropdown-item">Updated(reverse)</a>
+                <hr>
+
+
                 <a href="{% url 'filter_by_number_of_comments' %}" class="dropdown-item">qy Comments</a>
                 <hr>
                 <a href="{% url 'login' %}" class="dropdown-item">exit</a>

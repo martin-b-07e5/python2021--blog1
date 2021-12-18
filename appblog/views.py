@@ -124,15 +124,7 @@ def about_us(request):
     return render(request, "appblog/about_us.html")
 
 
-
-def filter_by_date(request):
-    posts = Post.objects.all().order_by('created')
-    return render(request, 'appblog/post_list.html', {'posts': posts})
-
-def filter_by_date_reverse(request):
-    posts = Post.objects.all().order_by('-created')
-    return render(request, 'appblog/post_list.html', {'posts': posts})
-
+# --------------------
 def filter_by_category(request):
     posts = Post.objects.all().order_by('category')
     return render(request, 'appblog/post_list.html', {'posts': posts})
@@ -140,7 +132,7 @@ def filter_by_category(request):
 def filter_by_category_reverse(request):
     posts = Post.objects.all().order_by('-category')
     return render(request, 'appblog/post_list.html', {'posts': posts})
-
+# --------------------
 def filter_by_title(request):
     posts = Post.objects.all().order_by('title')
     return render(request, 'appblog/post_list.html', {'posts': posts})
@@ -148,9 +140,33 @@ def filter_by_title(request):
 def filter_by_title_reverse(request):
     posts = Post.objects.all().order_by('-title')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+# --------------------
+def filter_by_created(request):
+    posts = Post.objects.all().order_by('created')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
 
+def filter_by_created_reverse(request):
+    posts = Post.objects.all().order_by('-created')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+# --------------------
+def filter_by_publish(request):
+    posts = Post.objects.all().order_by('publish')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
 
+def filter_by_publish_reverse(request):
+    posts = Post.objects.all().order_by('-publish')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+# --------------------
+def filter_by_updated(request):
+    posts = Post.objects.all().order_by('updated')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
 
+def filter_by_updated_reverse(request):
+    posts = Post.objects.all().order_by('-updated')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+# --------------------
+# --------------------
+# --------------------
 # 🔥 pending
 def filter_by_number_of_comments(request):
     # posts= Post.objects.filter(post.comments.count)
@@ -163,9 +179,3 @@ def filter_by_number_of_comments(request):
 # Post.objects.filter(publish__year=2020, author__username='admin')
 # Post.objects.filter(publish__year=2020) \
 #             .filter(author__username='admin')
-
-# Post.objects.order_by('title')
-# Post.objects.order_by('-title')
-
-
- 

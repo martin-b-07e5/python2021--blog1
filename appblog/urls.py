@@ -40,14 +40,26 @@ urlpatterns = [
     path('about_us/', about_us, name='about_us'),
     path('login/', login, name='login'),
 
-    path('filter_by_date/', filter_by_date, name='filter_by_date'),
-    path('filter_by_date_reverse/', filter_by_date_reverse, name='filter_by_date_reverse'),
-    
+
+    # --------------------
     path('filter_by_category/', filter_by_category, name='filter_by_category'),
     path('filter_by_category_reverse/', filter_by_category_reverse, name='filter_by_category_reverse'),
-
+    # --------------------
     path('filter_by_title/', filter_by_title, name='filter_by_title'),
     path('filter_by_title_reverse/', filter_by_title_reverse, name='filter_by_title_reverse'),
+    # --------------------
+    path('filter_by_created/', filter_by_created, name='filter_by_created'),
+    path('filter_by_created_reverse/', filter_by_created_reverse, name='filter_by_created_reverse'),
+
+    path('filter_by_publish/', filter_by_publish, name='filter_by_publish'),
+    path('filter_by_publish_reverse/', filter_by_publish_reverse, name='filter_by_publish_reverse'),
+
+    path('filter_by_updated/', filter_by_updated, name='filter_by_updated'),
+    path('filter_by_updated_reverse/', filter_by_updated_reverse, name='filter_by_updated_reverse'),
+    # --------------------
+    
+    # --------------------
+    # --------------------
 
 
     # 🔥 pending
