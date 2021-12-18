@@ -37,7 +37,6 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.publish = timezone.now()
-            post.slug = "hola"
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:

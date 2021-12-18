@@ -2,6 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+# slug
+from django.template.defaultfilters import slugify
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -37,6 +41,11 @@ class Post(models.Model):
         default='draft'
         )
 
+    # https://apuntes-snicoper.readthedocs.io/es/latest/programacion/python/django/generar_slug_automaticamente.html
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Post, self).save(*args, **kwargs)
+
 # --------------------------------------------------
     objects = models.Manager()    # The default manager. 👀
     published = PublishedManager()    # Our custom manager. 👀👀
@@ -45,7 +54,7 @@ class Post(models.Model):
     # 💡👀 you can use it to perform queries.
 # --------------------------------------------------
 
-    # Acá se define el orden de las noticias
+    # Acá se define el orden de las Posts
     class Meta:
         # ordering = ('-publish',)
         # ordering = ('created',)
@@ -64,7 +73,6 @@ class Comment(models.Model):
     post = models.ForeignKey('appblog.Post', on_delete=models.CASCADE, related_name='comments')
     author = models.CharField(max_length=200, verbose_name="Autor")
     text = models.TextField(verbose_name="Comentario")
-    # created_date = models.DateTimeField(default=timezone.now)
     publish = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 

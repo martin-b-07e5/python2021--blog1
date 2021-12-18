@@ -30,7 +30,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'    # agrega para filtrar top left below search
 
     # ordering = ('status', 'publish')    # Order by status, then by publish.
-    ordering = ('publish', 'status')    # Order by status, then by publish.
+    ordering = ('-publish', )    # Order by status, then by publish.
 
 
 """You are telling the Django administration site
