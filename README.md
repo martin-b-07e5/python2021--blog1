@@ -1,8 +1,8 @@
 # about_us
 - 👋 Hi, I’m Bergagno Martín -- martin-b-07e5
 - 👋 Hi, I'm Paz Almirón Nicolás -- PazNicolas
-- 👋 Hi, I’m TomasGaAqBz  --  Tomas Aquino
-- 👋 Hi, I’m IBetaR  --  Ilich Betancourt
+- 👋 Hi, I’m TomasGaAqBz  --  Aquino Tomas
+- 👋 Hi, I’m IBetaR  --  Betancourt Ilich
 - 👋 Hi, I’m Grimill22  --  Ojeda Adrián David
 - 👋 Hi, I’m EduLoGo  --  Lopez Goitia Eduardo
 - 👋 Hi, I’m MigueProg  --  Peña Miguel Ángel
