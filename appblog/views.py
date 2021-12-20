@@ -130,7 +130,6 @@ def about_us(request):
 # --------------------
 # $ python manage.py shell
 # >>> from appblog.models import Post
-# >>> from appblog.models import Post
 
 def filter_by_category_two(request):
     # post = Post.objects.filter(category='onu')
