@@ -128,13 +128,18 @@ def about_us(request):
 
 
 # --------------------
+# categorías
+#     Objetivos del Milenio
+#     ONU
+#     Organización internacional
+
 # $ python manage.py shell
 # >>> from appblog.models import Post
 
 def filter_by_category_two(request):
-    # post = Post.objects.filter(category='onu')
-    # post = Post.objects.filter(category__startswith='onu')
-    posts = Post.published.filter(category__startswith='onu')
+    posts = Post.objects.filter(category='onu')
+    # posts = Post.objects.filter(category__startswith='onu')
+    # posts = Post.published.filter(category__startswith='onu')
     return render(request, 'appblog/post_list.html', {'posts': posts})
     # return render(request, 'appblog/filter_by_category_one.html', {'posts': posts})
 # --------------------
