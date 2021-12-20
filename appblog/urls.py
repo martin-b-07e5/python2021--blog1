@@ -62,11 +62,7 @@ urlpatterns = [
     path('filter_by_updated/', filter_by_updated, name='filter_by_updated'),
     path('filter_by_updated_reverse/', filter_by_updated_reverse, name='filter_by_updated_reverse'),
     # --------------------
-    
     # --------------------
-    # --------------------
-
-
     # 🔥 pending
     path('filter_by_number_of_comments/', filter_by_number_of_comments, name='filter_by_number_of_comments'),
 ]

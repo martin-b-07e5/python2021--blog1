@@ -137,9 +137,9 @@ def about_us(request):
 # >>> from appblog.models import Post
 
 def filter_by_category_two(request):
-    posts = Post.objects.filter(category='onu')
+    # posts = Post.objects.filter(category='onu')
     # posts = Post.objects.filter(category__startswith='onu')
-    # posts = Post.published.filter(category__startswith='onu')
+    posts = Post.published.filter(category__startswith='objetivo')
     return render(request, 'appblog/post_list.html', {'posts': posts})
     # return render(request, 'appblog/filter_by_category_one.html', {'posts': posts})
 # --------------------
@@ -186,14 +186,7 @@ def filter_by_updated_reverse(request):
 # --------------------
 # --------------------
 # 🔥 pending
+# def GetTopPost(request):
 def filter_by_number_of_comments(request):
-    # posts= Post.objects.filter(post.comments.count)
-    posts= Post.objects.filter(publish__year=2021)
+    posts = Post.objects.raw('SELECT appblog_post.*, (SELECT count(*) FROM appblog_comment WHERE appblog_comment.post_id = appblog_post.id) AS comentario FROM appblog_post ORDER BY comentario DESC LIMIT 3')
     return render(request, 'appblog/post_list.html', {'posts': posts})
-
-
-
-
-# Post.objects.filter(publish__year=2020, author__username='admin')
-# Post.objects.filter(publish__year=2020) \
-#             .filter(author__username='admin')
