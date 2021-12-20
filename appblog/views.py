@@ -134,7 +134,7 @@ def about_us(request):
 def filter_by_category_two(request):
     # post = Post.objects.filter(category='onu')
     # post = Post.objects.filter(category__startswith='onu')
-    post = Post.published.filter(category__startswith='onu')
+    posts = Post.published.filter(category__startswith='onu')
     return render(request, 'appblog/post_list.html', {'posts': posts})
     # return render(request, 'appblog/filter_by_category_one.html', {'posts': posts})
 # --------------------
