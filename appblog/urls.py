@@ -45,6 +45,8 @@ urlpatterns = [
 
 
     # --------------------
+    path('filter_by_category_two/', filter_by_category_two, name='filter_by_category_two'),
+    # --------------------
     path('filter_by_category/', filter_by_category, name='filter_by_category'),
     path('filter_by_category_reverse/', filter_by_category_reverse, name='filter_by_category_reverse'),
     # --------------------

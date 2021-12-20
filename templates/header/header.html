@@ -16,6 +16,8 @@
               <!-- <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown">🎅 Filter by: </button> -->
               <button type="button" class="btn btn-sm dropdown-toggle btn-dark" data-toggle="dropdown">🎅 Filter by: </button>
               <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                <li><a href="{% url 'filter_by_category_two' %}" class="dropdown-item">filter_by_category_two</a></li>
+                <li><hr class="dropdown-divider"></li>
                 <li><a href="{% url 'filter_by_category' %}" class="dropdown-item">Category</a></li>
                 <li><a href="{% url 'filter_by_category_reverse' %}" class="dropdown-item">Category(reverse)</a></li>
                 <li><hr class="dropdown-divider"></li>

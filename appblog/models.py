@@ -10,13 +10,14 @@ from django.urls import reverse
 # Create your models here.
 
 # 👀👀 Solo devuelve los publicados
-# Definirla arriba de la invocación.
+# 👇 define your custom manager (Definirla arriba de la invocación).
 class PublishedManager(models.Manager):
     # 💡 Add the custom manager.
     def get_queryset(self):
         return super(PublishedManager,
                      self).get_queryset()\
             .filter(status='published')
+
 
 # ----------------------------------------------------------------------
 class Post(models.Model):
@@ -73,7 +74,6 @@ class Post(models.Model):
 # https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types
     # https://apuntes-snicoper.readthedocs.io/es/latest/programacion/python/django/generar_slug_automaticamente.html
 # ----------------------------------------------------------------------
-
 
 
 # by NPA

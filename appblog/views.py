@@ -1,6 +1,9 @@
+# ~/django/myProjects/blog1/appblog/forms.py
 from .forms import PostForm, CommentForm
+
 # from .models import Post, Comment
 from .models import *
+
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -124,6 +127,17 @@ def about_us(request):
     return render(request, "appblog/about_us.html")
 
 
+# --------------------
+# $ python manage.py shell
+# >>> from appblog.models import Post
+# >>> from appblog.models import Post
+
+def filter_by_category_two(request):
+    # post = Post.objects.filter(category='onu')
+    # post = Post.objects.filter(category__startswith='onu')
+    post = Post.published.filter(category__startswith='onu')
+    return render(request, 'appblog/post_list.html', {'posts': posts})
+    # return render(request, 'appblog/filter_by_category_one.html', {'posts': posts})
 # --------------------
 def filter_by_category(request):
     posts = Post.objects.all().order_by('category')
