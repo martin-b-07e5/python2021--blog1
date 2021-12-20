@@ -74,13 +74,6 @@ class Post(models.Model):
     # https://apuntes-snicoper.readthedocs.io/es/latest/programacion/python/django/generar_slug_automaticamente.html
 # ----------------------------------------------------------------------
 
-    def approve(self):
-        # if user.is_authenticated:
-            self.approved_comment = True
-            self.save()
-
-    def __str__(self):
-        return self.text
 
 
 # by NPA
@@ -91,6 +84,14 @@ class Comment(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 
+    # para aprovar comentarios
+    def approve(self):
+        # if user.is_authenticated:
+            self.approved_comment = True
+            self.save()
+
+    def __str__(self):
+        return self.text
 
 
 """
