@@ -185,7 +185,7 @@ def filter_by_updated_reverse(request):
 # --------------------
 # --------------------
 # --------------------
-# 🔥 pending
+# 💡💡💡 top 3 post by comments
 # def GetTopPost(request):
 def filter_by_number_of_comments(request):
     posts = Post.objects.raw('SELECT appblog_post.*, (SELECT count(*) FROM appblog_comment WHERE appblog_comment.post_id = appblog_post.id) AS comentario FROM appblog_post ORDER BY comentario DESC LIMIT 3')
