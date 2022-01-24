@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'g6db',
-        'USER': 'grupo6',
-        'PASSWORD': 'holagrupo6',
-        'HOST': '127.0.0.1',
-        # 'PORT': '5432',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'g6db',
+#         'USER': 'grupo6',
+#         'PASSWORD': 'holagrupo6',
+#         'HOST': '127.0.0.1',
+#         # 'PORT': '5432',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
@@ -141,8 +141,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
 
 # imágenes que se suben de forma dinámica (la sube el usr)
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 # https://devcenter.heroku.com/articles/django-assets
 # https://djangocentral.com/static-assets-in-django/

@@ -7,8 +7,8 @@ from .models import Post, Comment
 # admin.site.register(Post)
 @admin.register(Post)
 
-# 2021-12-14_23:56:32 👇 no esta funcionando la sgte linea
 # admin.site.register(Comment)
+# 2021-12-14_23:56:32 ☝ no esta funcionando la linea anterior
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
@@ -30,7 +30,7 @@ class PostAdmin(admin.ModelAdmin):
     date_hierarchy = 'publish'    # agrega para filtrar top left below search
 
     # ordering = ('status', 'publish')    # Order by status, then by publish.
-    ordering = ('-publish', )    # Order by status, then by publish.
+    ordering = ('-publish', )    # Order by publish.
 
 
 """You are telling the Django administration site

@@ -1,3 +1,5 @@
+from django.shortcuts import render, get_object_or_404, redirect
+
 # ~/django/myProjects/blog1/appblog/forms.py
 from .forms import PostForm, CommentForm
 
@@ -6,7 +8,6 @@ from .models import *
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import get_template
 from django.utils import timezone
 
@@ -141,7 +142,6 @@ def filter_by_category_two(request):
     # posts = Post.objects.filter(category__startswith='onu')
     posts = Post.published.filter(category__startswith='objetivo')
     return render(request, 'appblog/post_list.html', {'posts': posts})
-    # return render(request, 'appblog/filter_by_category_one.html', {'posts': posts})
 # --------------------
 def filter_by_category(request):
     posts = Post.objects.all().order_by('category')

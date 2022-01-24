@@ -8,7 +8,7 @@ from django.urls import reverse
 
 
 # Create your models here.
-
+# ----------------------------------------------------------------------
 # 👀👀 Solo devuelve los publicados
 # 👇 define your custom manager (Definirla arriba de la invocación).
 class PublishedManager(models.Manager):
@@ -17,9 +17,8 @@ class PublishedManager(models.Manager):
         return super(PublishedManager,
                      self).get_queryset()\
             .filter(status='published')
-
-
 # ----------------------------------------------------------------------
+
 class Post(models.Model):
     # 💡 Definimos las noticias a ser mostradas.
     STATUS_CHOICES = (
@@ -71,10 +70,9 @@ class Post(models.Model):
         self.slug = slugify(self.title)
         super(Post, self).save(*args, **kwargs)
 
-# https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types
+    # https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types
     # https://apuntes-snicoper.readthedocs.io/es/latest/programacion/python/django/generar_slug_automaticamente.html
 # ----------------------------------------------------------------------
-
 
 # by NPA
 class Comment(models.Model):
@@ -94,10 +92,8 @@ class Comment(models.Model):
         return self.text
 
 
-"""
-slug: This is a field intended to be used in URLs.
-          A slug is a short label that contains only letters, numbers, underscores, or hyphens.
-          You will use the slug field to build beautiful, SEO-friendly URLs for your blog posts.
-            You have added the unique_for_date parameter to this field so that you can build URLs for posts using their publish date and slug.
-            Django will prevent multiple posts from having the same slug for a given date.
-"""
+""" slug: This is a field intended to be used in URLs.
+    A slug is a short label that contains only letters, numbers, underscores, or hyphens.
+    You will use the slug field to build beautiful, SEO-friendly URLs for your blog posts.
+    You have added the unique_for_date parameter to this field so that you can build URLs for posts using their publish date and slug.
+    Django will prevent multiple posts from having the same slug for a given date. """
