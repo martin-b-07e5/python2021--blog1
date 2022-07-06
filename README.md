@@ -13,6 +13,7 @@ $ python manage.py runserver
 # change port
 $ python manage.py runserver 8001
 
+# usage
 -  url: 127.0.0.1:8000/admin/
 - user: admin
 - pass: h........6
