@@ -7,11 +7,11 @@ from .forms import PostForm, CommentForm
 from .models import *
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.template.loader import get_template
+# from django.http import HttpResponse
+# from django.template.loader import get_template
 from django.utils import timezone
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -137,56 +137,75 @@ def about_us(request):
 # $ python manage.py shell
 # >>> from appblog.models import Post
 
+# --------------------
 def filter_by_category_two(request):
     # posts = Post.objects.filter(category='onu')
     # posts = Post.objects.filter(category__startswith='onu')
     posts = Post.published.filter(category__startswith='objetivo')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
 # --------------------
 def filter_by_category(request):
     posts = Post.objects.all().order_by('category')
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+
 def filter_by_category_reverse(request):
     posts = Post.objects.all().order_by('-category')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
 # --------------------
 def filter_by_title(request):
     posts = Post.objects.all().order_by('title')
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+
 def filter_by_title_reverse(request):
     posts = Post.objects.all().order_by('-title')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
 # --------------------
 def filter_by_created(request):
     posts = Post.objects.all().order_by('created')
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+
 def filter_by_created_reverse(request):
     posts = Post.objects.all().order_by('-created')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
 # --------------------
 def filter_by_publish(request):
     posts = Post.objects.all().order_by('publish')
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+
 def filter_by_publish_reverse(request):
     posts = Post.objects.all().order_by('-publish')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
 # --------------------
 def filter_by_updated(request):
     posts = Post.objects.all().order_by('updated')
     return render(request, 'appblog/post_list.html', {'posts': posts})
 
+
 def filter_by_updated_reverse(request):
     posts = Post.objects.all().order_by('-updated')
     return render(request, 'appblog/post_list.html', {'posts': posts})
+
+
 # --------------------
 # --------------------
 # --------------------
 # 💡💡💡 top 3 post by comments
 # def GetTopPost(request):
 def filter_by_number_of_comments(request):
-    posts = Post.objects.raw('SELECT appblog_post.*, (SELECT count(*) FROM appblog_comment WHERE appblog_comment.post_id = appblog_post.id) AS comentario FROM appblog_post ORDER BY comentario DESC LIMIT 3')
+    posts = Post.objects.raw(
+        'SELECT appblog_post.*, (SELECT count(*) FROM appblog_comment WHERE appblog_comment.post_id = appblog_post.id) AS comentario FROM appblog_post ORDER BY comentario DESC LIMIT 3')
     return render(request, 'appblog/post_list.html', {'posts': posts})

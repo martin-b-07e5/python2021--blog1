@@ -1,3 +1,2 @@
 [Desktop Entry]
-#Icon=/usr/share/pixmaps/python3.9.xpm
-Icon=/home/pepe/django/.django.ico
+Icon=$HOME/django/.django.ico
