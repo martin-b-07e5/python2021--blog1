@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
@@ -91,11 +91,22 @@ DATABASES = {
 #         'NAME': 'g6db',
 #         'USER': 'grupo6',
 #         'PASSWORD': 'holagrupo6',
-#         'HOST': '127.0.0.1',
+#         'HOST': '127.0.0.1',    # Si ejecutás Django fuera de Docker (por ejemplo, en tu host), usar '127.0.0.1' o 'localhost'.
 #         # 'PORT': '5432',
 #         'PORT': '3306',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE', 'g6db'),
+        'USER': os.environ.get('MYSQL_USER', 'grupo6'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'holagrupo6'),
+        'HOST': os.environ.get('MYSQL_HOST', 'db'),  # 'db' será el nombre del servicio en docker-compose
+        'PORT': os.environ.get('MYSQL_PORT', '3306'),
+    }
+}
 
 
 # Password validation

@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mysql:lts
+    restart: always
+    environment:
+      MYSQL_DATABASE: g6db
+      MYSQL_USER: grupo6
+      MYSQL_PASSWORD: holagrupo6
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d/:ro
+
+  web:
+    build: .
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: sh -c "/wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000"
+    # command: sh -c "/wait-for-it.sh db:3306 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8000"
+    environment:
+      MYSQL_DATABASE: g6db
+      MYSQL_USER: grupo6
+      MYSQL_PASSWORD: holagrupo6
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+    depends_on:
+      - db
+
+volumes:
+  db_data:
