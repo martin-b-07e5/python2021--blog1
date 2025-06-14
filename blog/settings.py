@@ -19,8 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#m-@@+(ilc$g#p+1^2#hjsg1x*-9khj1va9u!0r64_4)5dh&vm'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']  # fails if not defined in the .env
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,17 +84,6 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'g6db',
-#         'USER': 'grupo6',
-#         'PASSWORD': 'holagrupo6',
-#         'HOST': '127.0.0.1',    # Si ejecutás Django fuera de Docker (por ejemplo, en tu host), usar '127.0.0.1' o 'localhost'.
-#         # 'PORT': '5432',
-#         'PORT': '3306',
-#     }
-# }
 
 DATABASES = {
     'default': {
