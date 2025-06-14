@@ -84,7 +84,7 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 ## 4. docker-compose.yml
 
 ```yaml
-version: "3.9"
+# version: "3.9"
 services:
   db:
     image: mysql:lts
@@ -102,6 +102,8 @@ services:
 
   web:
     build: .
+    restart: always
+    # command: python manage.py runserver 0.0.0.0:8000
     command: sh -c "/wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
@@ -136,7 +138,7 @@ volumes:
 
 ```bash
 docker compose down -v
-docker compose up --build
+docker compose up -d --build
 ```
 
 - This will build the images, create the containers, and initialize the MySQL database from your dump.

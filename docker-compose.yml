@@ -1,6 +1,7 @@
 services:
   db:
     image: mysql:lts
+    container_name: blog1-mysql-container    # <--- Custom name
     restart: always
     environment:
       MYSQL_DATABASE: g6db
@@ -15,10 +16,10 @@ services:
 
   web:
     build: .
+    # image: blog1-web   # <--- default name is good
+    container_name: blog1-web-container  # <--- Personalized name
     restart: always
-    # command: python manage.py runserver 0.0.0.0:8000
     command: sh -c "/wait-for-it.sh db:3306 -- python manage.py runserver 0.0.0.0:8000"
-    # command: sh -c "/wait-for-it.sh db:3306 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
     ports:

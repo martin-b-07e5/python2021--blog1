@@ -1,5 +1,3 @@
-
-
 # Stage 1: Build dependencies and install Python packages
 FROM python:3.12-slim AS builder
 
@@ -12,9 +10,9 @@ RUN apt-get update && \
 
 # Copy application code
 COPY requirements.txt .
+
 # Install Python dependencies
 RUN pip install --upgrade pip && pip install --user -r requirements.txt
-
 
 # Stage 2: Final image for running the application
 FROM python:3.12-slim

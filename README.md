@@ -41,6 +41,9 @@ git clone https://github.com/martin-b-07e5/python2021--blog1.git
 
     (env) $ pip install -r requirements.txt
 
+     -r,--requirement <file>
+              Install from the given requirements file.  This option can be used multiple times.
+
 
 ##### Output installed packages in requirements format
 
