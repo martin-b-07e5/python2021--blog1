@@ -20,13 +20,12 @@ media
 
 # Environments
 .env
-.env-borrar
-.venv
 env/
-env-borrar/
-venv/
 ENV/
 env.bak/
+env-borrar/
+.venv
+venv/
 venv.bak/
 
 # Miscellaneous
