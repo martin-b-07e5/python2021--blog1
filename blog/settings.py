@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -22,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']  # fails if not defined in the .env
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
@@ -73,26 +75,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-
+# Use environment variables for database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE', 'g6db'),
-        'USER': os.environ.get('MYSQL_USER', 'grupo6'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'holagrupo6'),
-        'HOST': os.environ.get('MYSQL_HOST', 'db'),  # 'db' será el nombre del servicio en docker-compose
-        'PORT': os.environ.get('MYSQL_PORT', '3306'),
+        'NAME': os.environ['MYSQL_DATABASE'],
+        'USER': os.environ['MYSQL_USER'],
+        'PASSWORD': os.environ['MYSQL_PASSWORD'],
+        'HOST': os.environ.get('MYSQL_HOST', 'db'),  # 'db' is safe as default for Docker
+        'PORT': os.environ.get('MYSQL_PORT', '3306'), # 3306 is safe as default port
     }
 }
 
@@ -121,14 +112,19 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-# TIME_ZONE = 'UTC'
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std-setting-TIME_ZONE
 TIME_ZONE = 'America/Argentina/Buenos_Aires'
 
+# https://docs.djangoproject.com/en/3.2/ref/settings/#use-i18n
+# A boolean that specifies whether Django’s translation system should be enabled.
 USE_I18N = True
 
+# https://docs.djangoproject.com/en/3.2/ref/settings/#use-l10n
+# A boolean that specifies if localized formatting of data will be enabled by default or not.
+# If this is set to True, e.g. Django will display numbers and dates using the format of the current locale.
 USE_L10N = True
 
-# USE_TZ = True
+# https://docs.djangoproject.com/en/3.2/ref/settings/#use-tz
 USE_TZ = False
 
 
@@ -139,7 +135,7 @@ STATIC_URL = '/static/'
 #STATICFILES_DIRS being a list indicates that having multiple static directories is possible.
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
 
-# imágenes que se suben de forma dinámica (la sube el usr)
+# images that are uploaded dynamically (uploaded by the user)
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
