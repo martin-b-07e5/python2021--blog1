@@ -10,6 +10,8 @@
 
 # directories
 .idea/
+.vscode/
+.qodo/
 
 ### Django ###
 *.log

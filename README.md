@@ -1,23 +1,19 @@
 This `README.md` provides a clear guide for other developers to clone and run your application locally.
 
-
-## 💡Clonar el Repositorio
+## 💡Clone the Repository
 
 git clone https://github.com/martin-b-07e5/python2021--blog1.git
 
-
-
-### Configuración del Entorno
+### Environment Setup
 
     cd repositoryName
     cd python2021--blog1
 
-#### 💡Crea un entorno virtual:
+#### 💡Create a virtual environment:
 
     $ python -m venv env
 
-
-#### 💡Activa el entorno virtual:
+#### 💡Activate the virtual environment:
 
     ✅Linux:
     $ source env/bin/activate
@@ -26,6 +22,7 @@ git clone https://github.com/martin-b-07e5/python2021--blog1.git
     .\env\Scripts\activate
 
 ##### list installed packages
+
     (env) $ pip list
     Package    Version
     ---------- -------
@@ -33,61 +30,58 @@ git clone https://github.com/martin-b-07e5/python2021--blog1.git
     setuptools 66.1.1
 
 ##### verify installed packages have compatible dependencies
+
     (env) $ pip check
     No broken requirements found.
 
-
-#### 💡Instala las dependencias:
+#### 💡Install dependencies:
 
     (env) $ pip install -r requirements.txt
 
      -r,--requirement <file>
               Install from the given requirements file.  This option can be used multiple times.
 
-
 ##### Output installed packages in requirements format
 
     (env) $ pip freeze
-    asgiref==3.4.1
-    Django==3.2.9
-    mysqlclient==2.1.0
-    pytz==2021.3
-    sqlparse==0.4.2
+    pip freeze
+    asgiref==3.9.1
+    Django==5.2.4
+    mysqlclient==2.2.7
+    python-dotenv==1.1.1
+    pytz==2025.2
+    sqlparse==0.5.3
 
 ##### verify installed packages have compatible dependencies
 
     (env) $ pip check
     No broken requirements found.
 
+### Run the Application
 
+#### 💡Perform migrations:
 
-### Ejecutar la Aplicación
-
-#### 💡Realiza las migraciones:
-
-#### 💡Si ya estás dentro del contenedor:
+#### 💡If you are inside the container:
 
     (env) $ python manage.py makemigrations
     (env) $ python manage.py migrate
 
-#### 💡Desde tu host (fuera del contenedor):
+#### 💡From your host (outside the container):
 
     $ docker compose exec web python manage.py makemigrations
     $ docker compose exec web python manage.py migrate
 
-
-💡 entrar al container
-(env) ➜  blog1 git:(main) ✗ docker exec -it blog1-web-container bash
+💡 Enter the container
+(env) ➜ blog1 git:(main) ✗ docker exec -it blog1-web-container bash
 
 root@82a4284c9f5d:/app# python manage.py makemigrations
 No changes detected
 
 root@82a4284c9f5d:/app# python manage.py migrate
 Operations to perform:
-  Apply all migrations: admin, appblog, auth, contenttypes, sessions
+Apply all migrations: admin, appblog, auth, contenttypes, sessions
 Running migrations:
-  No migrations to apply.
-
+No migrations to apply.
 
 #### ✅runserver
 
@@ -98,7 +92,6 @@ Running migrations:
     docker compose up -d --build
     ```
 
-
 ##### ✅❗change port
 
     (env) $ ✗ python manage.py runserver 8001
@@ -106,10 +99,10 @@ Running migrations:
     Starting development server at http://127.0.0.1:8001/
     Quit the server with CONTROL-C.
 
-
 # usage
 
 ## 💡Admin panel
+
     -  url: 127.0.0.1:8001/admin/
     - user: admin
     - pass: somePassword
@@ -121,23 +114,19 @@ Running migrations:
 
         http://127.0.0.1:8001/admin/
 
-
 # change password
 
     (env) $ python manage.py changepassword admin
 
-
 # create another superuser
+
         (env) $ python manage.py createsuperuser
         Username: admin2
         Superuser created successfully.
 
-
 # Video
 
 [video](https://www.youtube.com/watch?v=2I709vaAu-k)
-
-
 
 # about
 
