@@ -65,35 +65,16 @@ git clone https://github.com/martin-b-07e5/python2021--blog1.git
 
 #### 💡Realiza las migraciones:
 
-    (env) $ python manage.py makemigrations
-    No changes detected
+#### 💡Si ya estás dentro del contenedor:
 
+    (env) $ python manage.py makemigrations
     (env) $ python manage.py migrate
-    Operations to perform:
-      Apply all migrations: admin, appblog, auth, contenttypes, sessions
-    Running migrations:
-      No migrations to apply.
 
 #### 💡Desde tu host (fuera del contenedor):
 
     $ docker compose exec web python manage.py makemigrations
     $ docker compose exec web python manage.py migrate
 
-
-    (env) ➜  blog1 git:(main) ✗ docker compose exec web python manage.py makemigrations
-    No changes detected
-
-    (env) ➜  blog1 git:(main) ✗ docker compose exec web python manage.py migrate
-    Operations to perform:
-      Apply all migrations: admin, appblog, auth, contenttypes, sessions
-    Running migrations:
-      No migrations to apply.
-
-
-#### 💡O, si ya estás dentro del contenedor:
-
-    $ python manage.py makemigrations
-    $ python manage.py migrate
 
 💡 entrar al container
 (env) ➜  blog1 git:(main) ✗ docker exec -it blog1-web-container bash
@@ -111,6 +92,11 @@ Running migrations:
 #### ✅runserver
 
     (env) $ python manage.py runserver
+
+    ```bash
+    docker compose down -v
+    docker compose up -d --build
+    ```
 
 
 ##### ✅❗change port
