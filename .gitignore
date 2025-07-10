@@ -8,6 +8,9 @@
 .Apps-Java-icon.png
 .django.ico
 
+# directories
+.idea/
+
 ### Django ###
 *.log
 *.pot
