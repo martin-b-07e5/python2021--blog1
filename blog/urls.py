@@ -1,3 +1,4 @@
+# ~/django/myProjects/blog1/blog/urls.py
 """blog URL Configuration
 
     The `urlpatterns` list routes URLs to views.
